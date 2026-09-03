@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | Mysticink Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Outfit:wght@400;600&family=Pirata+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .error-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--bg-paper);
+    }
+    .error-code {
+      font-family: var(--font-gothic);
+      font-size: clamp(5rem, 15vw, 9rem);
+      color: var(--oxblood);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .error-msg {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: var(--ink-black);
+      margin-bottom: 16px;
+    }
+    .error-desc {
+      color: var(--ink-muted);
+      max-width: 450px;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="error-wrapper">
+    <div class="error-code">404</div>
+    <h1 class="error-msg">Lost in the Ink</h1>
+    <p class="error-desc">The page you are looking for has faded away or never existed. Head back to our studio homepage.</p>
+    <a href="index.html" class="btn btn-gold">
+      Return to Studio Homepage
+    </a>
+  </div>
+</body>
+</html>
