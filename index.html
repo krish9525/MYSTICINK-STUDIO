@@ -116,24 +116,16 @@
         <span class="brand-sub">Sanctuary • Dharamshala</span>
       </a>
 
-      <nav>
-        <ul id="nav-links" class="nav-links">
-          <button id="mobile-close-btn" class="mobile-menu-close" aria-label="Close menu">&times;</button>
-          <li class="mobile-menu-header">
-            <span class="brand-title" style="font-size: 1.4rem;">MYSTICINK</span>
-            <span class="brand-sub">Himalayan Tattoo Sanctuary</span>
-          </li>
+      <!-- Desktop Navigation Links (Hidden on mobile) -->
+      <nav class="desktop-nav">
+        <ul class="nav-links">
           <li><a href="#hero" class="nav-link active">Sanctuary</a></li>
           <li><a href="#travelers" class="nav-link">Travelers Guide</a></li>
           <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-          <li><a href="#pricing" class="nav-link">Pricing & Currency</a></li>
-          <li><a href="#hygiene" class="nav-link">Hygiene Standards</a></li>
+          <li><a href="#pricing" class="nav-link">Pricing</a></li>
+          <li><a href="#hygiene" class="nav-link">Hygiene</a></li>
           <li><a href="#reviews" class="nav-link">Reviews</a></li>
           <li><a href="#location" class="nav-link">Studio Visit</a></li>
-          <li class="mobile-drawer-cta">
-            <a href="#booking" class="btn btn-gold" style="width: 100%;">Book Consultation</a>
-            <a href="https://wa.me/917876132315?text=Hello%20Mysticink%20Studio!%20I%20am%20visiting%20McLeod%20Ganj%20and%20would%20like%20to%20consult%20for%20a%20tattoo." target="_blank" class="btn btn-whatsapp" style="width: 100%;">WhatsApp Direct</a>
-          </li>
         </ul>
       </nav>
 
@@ -147,17 +139,45 @@
         </div>
 
         <div class="header-cta-group">
-          <a href="#booking" class="btn btn-gold">
-            <span>Book Consultation</span>
+          <a href="#booking" class="btn btn-gold header-cta-btn">
+            <span>Book Session</span>
           </a>
         </div>
 
+        <!-- Mobile Hamburger Button (Only on Mobile) -->
         <button id="mobile-toggle-btn" class="mobile-menu-btn" aria-label="Toggle navigation">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
         </button>
       </div>
     </div>
   </header>
+
+  <!-- Dedicated Full-Screen Mobile Drawer (Completely hidden on desktop) -->
+  <div id="mobile-drawer" class="mobile-drawer-overlay">
+    <div class="mobile-drawer-content">
+      <button id="mobile-close-btn" class="mobile-drawer-close" aria-label="Close menu">&times;</button>
+      
+      <div class="mobile-drawer-brand">
+        <span class="brand-title" style="font-size: 1.35rem;">MYSTICINK</span>
+        <span class="brand-sub">Himalayan Tattoo Sanctuary</span>
+      </div>
+
+      <ul class="mobile-drawer-links">
+        <li><a href="#hero" class="mobile-link">Sanctuary</a></li>
+        <li><a href="#travelers" class="mobile-link">Travelers Guide</a></li>
+        <li><a href="#portfolio" class="mobile-link">Portfolio</a></li>
+        <li><a href="#pricing" class="mobile-link">Pricing & Currency</a></li>
+        <li><a href="#hygiene" class="mobile-link">Hygiene Standards</a></li>
+        <li><a href="#reviews" class="mobile-link">Reviews (310+)</a></li>
+        <li><a href="#location" class="mobile-link">Studio Visit</a></li>
+      </ul>
+
+      <div class="mobile-drawer-actions">
+        <a href="#booking" class="btn btn-gold" style="width: 100%;">Book Consultation</a>
+        <a href="https://wa.me/917876132315?text=Hello%20Mysticink%20Studio!%20I%20am%20visiting%20McLeod%20Ganj%20and%20would%20like%20to%20consult%20for%20a%20tattoo." target="_blank" class="btn btn-whatsapp" style="width: 100%;">WhatsApp Direct</a>
+      </div>
+    </div>
+  </div>
 
   <!-- 3. Hero Section (Editorial Sanctuary) -->
   <section id="hero" class="hero-section">

@@ -257,16 +257,16 @@ Looking forward to discussing with the resident artist!`;
 function initNavigation() {
   const mobileToggle = document.getElementById('mobile-toggle-btn');
   const mobileClose = document.getElementById('mobile-close-btn');
-  const navLinks = document.getElementById('nav-links');
+  const mobileDrawer = document.getElementById('mobile-drawer');
   const header = document.querySelector('.main-header');
 
   function openMobileMenu() {
-    navLinks?.classList.add('mobile-open');
+    mobileDrawer?.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
   function closeMobileMenu() {
-    navLinks?.classList.remove('mobile-open');
+    mobileDrawer?.classList.remove('active');
     document.body.style.overflow = '';
   }
 
@@ -279,15 +279,22 @@ function initNavigation() {
   }
 
   // Close when clicking any nav link or CTA inside mobile drawer
-  if (navLinks) {
-    navLinks.querySelectorAll('a').forEach(link => {
+  if (mobileDrawer) {
+    mobileDrawer.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Close when clicking outside content on overlay
+    mobileDrawer.addEventListener('click', (e) => {
+      if (e.target === mobileDrawer) {
+        closeMobileMenu();
+      }
     });
   }
 
   // Close on Escape key
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks?.classList.contains('mobile-open')) {
+    if (e.key === 'Escape' && mobileDrawer?.classList.contains('active')) {
       closeMobileMenu();
     }
   });
