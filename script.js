@@ -256,21 +256,41 @@ Looking forward to discussing with the resident artist!`;
    ========================================================================== */
 function initNavigation() {
   const mobileToggle = document.getElementById('mobile-toggle-btn');
+  const mobileClose = document.getElementById('mobile-close-btn');
   const navLinks = document.getElementById('nav-links');
   const header = document.querySelector('.main-header');
 
-  if (mobileToggle && navLinks) {
-    mobileToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('mobile-open');
-    });
+  function openMobileMenu() {
+    navLinks?.classList.add('mobile-open');
+    document.body.style.overflow = 'hidden';
+  }
 
-    // Close when clicking any nav link
-    navLinks.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('mobile-open');
-      });
+  function closeMobileMenu() {
+    navLinks?.classList.remove('mobile-open');
+    document.body.style.overflow = '';
+  }
+
+  if (mobileToggle) {
+    mobileToggle.addEventListener('click', openMobileMenu);
+  }
+
+  if (mobileClose) {
+    mobileClose.addEventListener('click', closeMobileMenu);
+  }
+
+  // Close when clicking any nav link or CTA inside mobile drawer
+  if (navLinks) {
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
     });
   }
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks?.classList.contains('mobile-open')) {
+      closeMobileMenu();
+    }
+  });
 
   // Header background elevation on scroll
   window.addEventListener('scroll', () => {

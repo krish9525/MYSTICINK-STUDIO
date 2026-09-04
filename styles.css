@@ -1448,67 +1448,407 @@ a {
 }
 
 @media (max-width: 768px) {
-  .nav-links, .header-cta-group {
+  /* 1. Global Spacing & Layout */
+  .container {
+    padding: 0 18px;
+  }
+
+  body {
+    padding-bottom: 80px; /* Account for sticky mobile floating bar */
+  }
+
+  /* 2. Top Trust Bar on Mobile */
+  .global-trust-bar {
+    padding: 6px 0;
+  }
+
+  .coordinates-badge {
+    display: none; /* Hide heavy technical coordinates on mobile */
+  }
+
+  .trust-signals-list {
+    width: 100%;
+    justify-content: center;
+    gap: 14px;
+    font-size: 0.72rem;
+  }
+
+  .trust-signal-pill:last-child {
+    display: none; /* Keep 2 crisp trust points on mobile */
+  }
+
+  /* 3. Header & Brand */
+  .main-header {
+    padding: 10px 0;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+  }
+
+  .brand-sub {
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+  }
+
+  .header-cta-group {
     display: none;
   }
 
-  .mobile-menu-btn {
-    display: block;
+  .header-tools {
+    gap: 8px;
   }
 
-  /* Mobile Nav Drawer when active */
+  .currency-selector-pill {
+    padding: 2px 3px;
+    gap: 1px;
+  }
+
+  .currency-btn {
+    font-size: 0.64rem;
+    padding: 3px 6px;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+  }
+
+  /* 4. Full-Screen Luxury Mobile Slide-Over Drawer */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(9, 9, 12, 0.98);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 70px 24px 40px 24px;
+    gap: 16px;
+    z-index: 2500;
+    transition: right 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    overflow-y: auto;
+    display: flex;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
+  }
+
   .nav-links.mobile-open {
+    right: 0;
+  }
+
+  .mobile-menu-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+  }
+
+  .mobile-menu-close:hover {
+    background: rgba(200, 169, 126, 0.15);
+    color: var(--gold-primary);
+  }
+
+  .mobile-menu-header {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--bg-surface);
+    align-items: center;
+    text-align: center;
+    margin-bottom: 12px;
+    padding-bottom: 16px;
     border-bottom: 1px solid var(--border-subtle);
-    padding: 24px;
-    gap: 18px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 280px;
   }
 
-  .trust-bar-flex {
-    justify-content: center;
+  .nav-link {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+    padding: 8px 16px;
+    display: block;
+    text-align: center;
   }
 
-  .gallery-editorial-grid,
-  .pricing-grid,
-  .reviews-grid,
-  .traveler-grid {
-    grid-template-columns: 1fr;
+  .nav-link:hover, .nav-link.active {
+    color: var(--gold-light);
   }
 
-  .hygiene-grid {
-    grid-template-columns: 1fr;
+  .nav-link.active::after {
+    display: none;
+  }
+
+  .mobile-drawer-cta {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  /* 5. Hero Section Mobile Optimization */
+  .hero-section {
+    padding: 36px 0 54px 0;
+  }
+
+  .hero-meta-badge {
+    padding: 5px 12px;
+    margin-bottom: 18px;
+    font-size: 0.72rem;
+  }
+
+  .hero-meta-badge .stars {
+    font-size: 0.78rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 7.5vw, 2.6rem);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem;
+    line-height: 1.68;
+    margin-bottom: 28px;
+  }
+
+  .hero-action-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .hero-action-row .btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 0.9rem;
   }
 
   .hero-stats-strip {
     grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding-top: 22px;
+  }
+
+  .hero-stat-box .num {
+    font-size: 1.4rem;
+  }
+
+  .hero-stat-box .label {
+    font-size: 0.62rem;
+  }
+
+  .hero-media-card img {
+    height: 320px;
+  }
+
+  .hero-floating-badge {
+    position: static;
+    margin-top: 14px;
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    justify-content: center;
+  }
+
+  /* 6. Section Spacing & Headers */
+  .section-header {
+    margin-bottom: 36px;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    line-height: 1.25;
+  }
+
+  .section-desc {
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .traveler-section,
+  .gallery-section,
+  .pricing-section,
+  .hygiene-section,
+  .reviews-section,
+  .booking-section,
+  .location-section {
+    padding: 60px 0;
+  }
+
+  /* 7. Horizontal Swipeable Filter Bars */
+  .gallery-filter-bar,
+  .review-chips-bar {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding: 0 4px 12px 4px;
+    margin-bottom: 24px;
+    scrollbar-width: none;
+  }
+
+  .gallery-filter-bar::-webkit-scrollbar,
+  .review-chips-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-btn,
+  .chip-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 0.78rem;
+    padding: 8px 16px;
+  }
+
+  /* 8. Grids on Mobile */
+  .gallery-editorial-grid,
+  .pricing-grid,
+  .reviews-grid,
+  .traveler-grid,
+  .hygiene-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .traveler-card,
+  .pricing-card,
+  .hygiene-card,
+  .review-card {
+    padding: 24px 20px;
+  }
+
+  .portfolio-card-img-wrap {
+    height: 300px;
+  }
+
+  .portfolio-card-info {
+    padding: 18px;
+  }
+
+  .portfolio-card-title {
+    font-size: 1.1rem;
+  }
+
+  /* 9. Booking Form Mobile Optimization */
+  .booking-wrapper {
+    grid-template-columns: 1fr;
+    padding: 24px 18px;
+    gap: 32px;
+  }
+
+  .booking-info h2 {
+    font-size: 1.75rem;
+    line-height: 1.25;
+  }
+
+  .booking-form {
+    padding: 20px 16px;
   }
 
   .form-row {
     grid-template-columns: 1fr;
+    gap: 0;
   }
 
+  /* Crucial for iOS: 16px font-size prevents Safari unwanted auto-zoom */
+  .form-input, .form-select, .form-textarea {
+    font-size: 16px !important;
+    padding: 13px 12px;
+  }
+
+  /* 10. Location & Map */
+  .location-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .location-details-box {
+    padding: 24px 18px;
+  }
+
+  .map-frame-container {
+    min-height: 280px;
+    height: 300px;
+  }
+
+  /* 11. Footer */
   .footer-top {
     grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
   }
 
   .footer-bottom {
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     text-align: center;
   }
 
+  /* 12. Floating Sticky Action Bar */
   .mobile-action-bar {
     display: flex;
+    padding: 10px 16px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+    background: rgba(10, 10, 14, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.7);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  body {
-    padding-bottom: 65px;
+  .mobile-action-btn {
+    height: 46px;
+    font-size: 0.86rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+  }
+}
+
+/* Extra small devices (iPhone SE, Galaxy Mini, < 380px) */
+@media (max-width: 380px) {
+  .brand-title {
+    font-size: 1.05rem;
+  }
+
+  .currency-btn {
+    font-size: 0.58rem;
+    padding: 2px 4px;
+  }
+
+  .hero-title {
+    font-size: 1.85rem;
+  }
+
+  .mobile-action-btn {
+    font-size: 0.78rem;
+    padding: 10px 6px;
   }
 }
