@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Not Found | Mysticink Studio</title>
+  <title>404 — Sanctuary Page Not Found | Mysticink Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Outfit:wght@400;600&family=Pirata+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
     .error-wrapper {
@@ -16,36 +16,47 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 40px 20px;
-      background: var(--bg-paper);
+      padding: 40px 24px;
+      background: var(--bg-black);
+    }
+    .error-tag {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 16px;
     }
     .error-code {
-      font-family: var(--font-gothic);
-      font-size: clamp(5rem, 15vw, 9rem);
-      color: var(--oxblood);
+      font-family: var(--font-serif);
+      font-size: clamp(6rem, 18vw, 10rem);
+      color: var(--text-primary);
       line-height: 1;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
     }
     .error-msg {
       font-family: var(--font-serif);
-      font-size: 1.6rem;
-      color: var(--ink-black);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--gold-light);
       margin-bottom: 16px;
     }
     .error-desc {
-      color: var(--ink-muted);
-      max-width: 450px;
-      margin-bottom: 30px;
+      color: var(--text-secondary);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 36px;
     }
   </style>
 </head>
 <body>
   <div class="error-wrapper">
-    <div class="error-code">404</div>
-    <h1 class="error-msg">Lost in the Ink</h1>
-    <p class="error-desc">The page you are looking for has faded away or never existed. Head back to our studio homepage.</p>
+    <span class="error-tag">Error 404 • Destination Unknown</span>
+    <div class="error-code gold-gradient-text">404</div>
+    <h1 class="error-msg">Path Not Found in the Himalayas</h1>
+    <p class="error-desc">The sacred page or portfolio link you requested does not exist or has been moved. Return to the main sanctuary to explore our art.</p>
     <a href="index.html" class="btn btn-gold">
-      Return to Studio Homepage
+      Return to Studio Sanctuary
     </a>
   </div>
 </body>

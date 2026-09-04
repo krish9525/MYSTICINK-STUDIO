@@ -1,16 +1,19 @@
 // ==========================================================================
-// Mysticink Studio - Interactive Logic & Google Reviews Engine
+// Mysticink Studio - Haute-Artisan Interactive Engine
+// Multi-Currency Converter, Dynamic Reviews, Gallery Lightbox & WhatsApp Concierge
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
   initReviewsEngine();
-  initGalleryFilter();
-  initWhatsAppBooking();
-  initMobileNav();
-  initSmoothScroll();
+  initCurrencySwitcher();
+  initGalleryFilterAndLightbox();
+  initWhatsAppConcierge();
+  initNavigation();
 });
 
-/* 1. Google Reviews Dynamic Engine */
+/* ==========================================================================
+   1. Dynamic Google Reviews Engine
+   ========================================================================== */
 function initReviewsEngine() {
   const chipsContainer = document.getElementById('review-filter-chips');
   const reviewsGrid = document.getElementById('reviews-cards-grid');
@@ -25,7 +28,7 @@ function initReviewsEngine() {
     </button>
   `).join('');
 
-  // Initial render of reviews
+  // Initial render
   renderReviews('all');
 
   // Filter click event
@@ -33,7 +36,7 @@ function initReviewsEngine() {
     const chip = e.target.closest('.chip-btn');
     if (!chip) return;
 
-    document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
+    chipsContainer.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
     chip.classList.add('active');
 
     const selectedCategory = chip.getAttribute('data-category');
@@ -48,7 +51,7 @@ function initReviewsEngine() {
     if (filtered.length === 0) {
       reviewsGrid.innerHTML = `
         <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted);">
-          <p>Showing verified Google Reviews for Mysticink Studio.</p>
+          <p>Showing verified 5.0★ Google Reviews for Mysticink Studio.</p>
         </div>
       `;
       return;
@@ -58,173 +61,227 @@ function initReviewsEngine() {
       <div class="review-card">
         <div>
           <div class="reviewer-meta">
-            <div class="reviewer-avatar" style="background-color: ${review.avatarColor};">
-              ${review.initial}
-            </div>
-            <div class="reviewer-info">
-              <h4>${review.author}</h4>
-              <div class="reviewer-sub">
-                <span class="stars-row">${'★'.repeat(review.rating)}</span>
-                <span>• ${review.relativeTime}</span>
-                <svg class="verified-icon" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                </svg>
-              </div>
+            <div class="reviewer-avatar">${review.initial}</div>
+            <div class="reviewer-details">
+              <h4>
+                ${review.author}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#38bdf8" title="Verified Reviewer"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              </h4>
+              <p class="reviewer-origin">${review.origin || 'Verified Visitor'}</p>
             </div>
           </div>
+
+          <div class="review-stars">★★★★★</div>
           <p class="review-text">"${review.text}"</p>
         </div>
-        
-        <div class="review-tags-row">
-          ${review.tags.map(t => {
-            const catMatch = GOOGLE_REVIEWS_DATA.categories.find(c => c.id === t);
-            return `<span class="review-tag-badge">#${catMatch ? catMatch.label : t}</span>`;
-          }).join('')}
+
+        <div class="review-footer">
+          <span>${review.relativeTime}</span>
+          <span style="display: flex; align-items: center; gap: 4px; color: var(--gold-primary);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Google Verified
+          </span>
         </div>
       </div>
     `).join('');
   }
 }
 
-/* 2. Gallery Filter & Lightbox Modal */
-function initGalleryFilter() {
-  const tabs = document.querySelectorAll('.filter-tab');
-  const items = document.querySelectorAll('.gallery-item');
+/* ==========================================================================
+   2. Multi-Currency Live Converter (INR, EUR, USD, GBP)
+   ========================================================================== */
+const PRICING_TIERS = {
+  fineline: {
+    name: "Fine-Line & Sacred Script",
+    INR: "₹3,500 – ₹6,000",
+    EUR: "€38 – €66",
+    USD: "$42 – $72",
+    GBP: "£33 – £56"
+  },
+  sleeve: {
+    name: "Custom Project / Session",
+    INR: "₹9,000 – ₹16,000",
+    EUR: "€99 – €175",
+    USD: "$108 – $192",
+    GBP: "£85 – £150"
+  },
+  piercing: {
+    name: "Sterile Body Piercing",
+    INR: "₹1,500 – ₹2,500",
+    EUR: "€16 – €28",
+    USD: "$18 – $30",
+    GBP: "£14 – £24"
+  }
+};
+
+let currentCurrency = 'INR';
+
+function initCurrencySwitcher() {
+  const currencyButtons = document.querySelectorAll('.currency-btn');
+  
+  function updatePrices(curr) {
+    currentCurrency = curr;
+    
+    // Update all currency buttons state across header and pricing section
+    currencyButtons.forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-curr') === curr);
+    });
+
+    // Update prices on the DOM
+    const finelineEl = document.getElementById('price-tier-fineline');
+    const sleeveEl = document.getElementById('price-tier-sleeve');
+    const piercingEl = document.getElementById('price-tier-piercing');
+
+    if (finelineEl) finelineEl.innerHTML = `${PRICING_TIERS.fineline[curr]} <span>/ piece</span>`;
+    if (sleeveEl) sleeveEl.innerHTML = `${PRICING_TIERS.sleeve[curr]} <span>/ session</span>`;
+    if (piercingEl) piercingEl.innerHTML = `${PRICING_TIERS.piercing[curr]} <span>/ standard</span>`;
+  }
+
+  currencyButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const curr = btn.getAttribute('data-curr');
+      updatePrices(curr);
+    });
+  });
+
+  // Default initialize
+  updatePrices('INR');
+}
+
+/* ==========================================================================
+   3. Gallery Filter & Modal Lightbox
+   ========================================================================== */
+function initGalleryFilterAndLightbox() {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const portfolioCards = document.querySelectorAll('.portfolio-card');
   const modal = document.getElementById('lightbox-modal');
   const modalImg = document.getElementById('lightbox-img');
   const modalCaption = document.getElementById('lightbox-caption');
   const modalClose = document.getElementById('lightbox-close');
 
-  if (tabs.length) {
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+  // Filter functionality
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
-        const filter = tab.getAttribute('data-filter');
-        items.forEach(item => {
-          if (filter === 'all' || item.getAttribute('data-category') === filter) {
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
-        });
+      const filterVal = btn.getAttribute('data-filter');
+
+      portfolioCards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (filterVal === 'all' || cat === filterVal) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
       });
     });
-  }
+  });
 
-  // Lightbox Modal
-  if (items.length && modal && modalImg) {
-    items.forEach(item => {
-      item.addEventListener('click', () => {
-        const img = item.querySelector('img');
-        const title = item.querySelector('.gallery-title')?.innerText || 'Tattoo Artwork';
-        const desc = item.querySelector('.gallery-desc')?.innerText || 'Mysticink Studio McLeod Ganj';
-        
+  // Lightbox functionality
+  portfolioCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const img = card.querySelector('img');
+      const title = card.querySelector('.portfolio-card-title');
+      const style = card.querySelector('.portfolio-style-badge');
+
+      if (img && modal && modalImg) {
         modalImg.src = img.src;
-        modalCaption.innerHTML = `<h4>${title}</h4><p style="color: #9CA3AF; font-size: 0.9rem;">${desc}</p>`;
+        modalImg.alt = img.alt || 'Tattoo Preview';
+        modalCaption.textContent = title ? `${title.textContent} • ${style ? style.textContent : ''}` : '';
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
-      });
+      }
     });
+  });
 
-    const closeModal = () => {
+  function closeModal() {
+    if (modal) {
       modal.classList.remove('active');
       document.body.style.overflow = '';
-    };
+    }
+  }
 
-    if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modal) {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
     });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
-    });
   }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
 }
 
-/* 3. WhatsApp Direct Quote Generator */
-function initWhatsAppBooking() {
-  const form = document.getElementById('whatsapp-booking-form');
+/* ==========================================================================
+   4. Traveler WhatsApp Concierge
+   ========================================================================== */
+function initWhatsAppConcierge() {
+  const form = document.getElementById('traveler-booking-form');
   if (!form) return;
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const name = document.getElementById('client-name')?.value.trim() || 'Visitor';
-    const phone = document.getElementById('client-phone')?.value.trim() || 'Not specified';
+    const origin = document.getElementById('client-origin')?.value.trim() || 'Not specified';
+    const travelDates = document.getElementById('client-travel-dates')?.value.trim() || 'Dates flexible';
     const service = document.getElementById('service-type')?.value || 'Custom Tattoo';
-    const placement = document.getElementById('tattoo-placement')?.value || 'Arm';
-    const size = document.getElementById('tattoo-size')?.value || 'Medium (4-6 in)';
-    const idea = document.getElementById('tattoo-idea')?.value.trim() || 'Looking for artist consultation';
+    const placement = document.getElementById('tattoo-placement')?.value.trim() || 'To be discussed';
+    const idea = document.getElementById('tattoo-idea')?.value.trim() || 'Concept consultation requested.';
 
-    const message = `Hello Mysticink Studio!\nI would like to inquire about a tattoo / piercing appointment:\n\n` +
-      `• *Name:* ${name}\n` +
-      `• *Phone:* ${phone}\n` +
-      `• *Service:* ${service}\n` +
-      `• *Placement:* ${placement}\n` +
-      `• *Approx Size:* ${size}\n` +
-      `• *Design Idea/Notes:* ${idea}\n\n` +
-      `Looking forward to your guidance!`;
+    const message = 
+`✨ *MYSTICINK STUDIO CONSULTATION INQUIRY* ✨
+• *Name:* ${name}
+• *Country / City:* ${origin}
+• *Travel Dates in McLeod Ganj:* ${travelDates}
+• *Preferred Service:* ${service}
+• *Placement:* ${placement}
+• *Design Concept / Reference:*
+${idea}
 
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/917876132315?text=${encodedMessage}`;
+(Preferred Currency: ${currentCurrency})
+Looking forward to discussing with the resident artist!`;
+
+    const encoded = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/917876132315?text=${encoded}`;
 
     window.open(whatsappUrl, '_blank');
   });
 }
 
-/* 4. Mobile Navigation Toggle */
-function initMobileNav() {
-  const menuBtn = document.getElementById('mobile-toggle-btn');
-  const navLinks = document.querySelector('.nav-links');
+/* ==========================================================================
+   5. Mobile Navigation & Header Scroll State
+   ========================================================================== */
+function initNavigation() {
+  const mobileToggle = document.getElementById('mobile-toggle-btn');
+  const navLinks = document.getElementById('nav-links');
+  const header = document.querySelector('.main-header');
 
-  if (!menuBtn || !navLinks) return;
+  if (mobileToggle && navLinks) {
+    mobileToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('mobile-open');
+    });
 
-  menuBtn.addEventListener('click', () => {
-    const isOpen = navLinks.style.display === 'flex';
-    if (isOpen) {
-      navLinks.style.display = 'none';
+    // Close when clicking any nav link
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('mobile-open');
+      });
+    });
+  }
+
+  // Header background elevation on scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      header?.classList.add('scrolled');
     } else {
-      navLinks.style.display = 'flex';
-      navLinks.style.flexDirection = 'column';
-      navLinks.style.position = 'absolute';
-      navLinks.style.top = '78px';
-      navLinks.style.left = '0';
-      navLinks.style.width = '100%';
-      navLinks.style.backgroundColor = '#0B0B0E';
-      navLinks.style.padding = '24px';
-      navLinks.style.borderBottom = '1px solid var(--border-gold)';
-      navLinks.style.zIndex = '99';
+      header?.classList.remove('scrolled');
     }
   });
-}
 
-/* 5. Smooth Scroll */
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#' || !targetId.startsWith('#')) return;
-
-      const targetEl = document.querySelector(targetId);
-      if (targetEl) {
-        e.preventDefault();
-        const headerOffset = 80;
-        const elementPosition = targetEl.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-
-        // Close mobile nav if open
-        const navLinks = document.querySelector('.nav-links');
-        if (window.innerWidth <= 992 && navLinks) {
-          navLinks.style.display = 'none';
-        }
-      }
-    });
-  });
+  // Dynamic Year in footer
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 }
