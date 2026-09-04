@@ -1,5 +1,6 @@
 # Netlify Configuration for Mysticink Studio
 [build]
+  command = "echo 'Static site ready for deployment'"
   publish = "."
 
 # Custom Headers for Security, Performance & Caching
