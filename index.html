@@ -120,6 +120,7 @@
       <nav class="desktop-nav">
         <ul class="nav-links">
           <li><a href="#hero" class="nav-link active">Sanctuary</a></li>
+          <li><a href="#artist" class="nav-link">Resident Master</a></li>
           <li><a href="#travelers" class="nav-link">Travelers Guide</a></li>
           <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
           <li><a href="#hygiene" class="nav-link">Hygiene Standards</a></li>
@@ -155,6 +156,7 @@
 
       <ul class="mobile-drawer-links">
         <li><a href="#hero" class="mobile-link">Sanctuary</a></li>
+        <li><a href="#artist" class="mobile-link">Resident Master Artist</a></li>
         <li><a href="#travelers" class="mobile-link">Travelers Guide</a></li>
         <li><a href="#portfolio" class="mobile-link">Portfolio</a></li>
         <li><a href="#hygiene" class="mobile-link">Hygiene Standards</a></li>
@@ -229,10 +231,13 @@
           </div>
 
           <div class="hero-floating-badge">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <div>
-              <strong>EU/US Hygiene Certified</strong>
-              <span>Single-use EO gas membrane cartridges</span>
+            <div class="hero-avatar-badge-wrap">
+              <img src="assets/artist/avatar_2_graded.jpg" alt="Pankaj Resident Master Tattoo Artist Avatar" class="hero-badge-avatar">
+              <span class="status-pulse-dot" title="In Studio Today"></span>
+            </div>
+            <div class="hero-badge-text-group">
+              <strong>Resident Master Inker</strong>
+              <span>1-on-1 Bespoke Sanctuary Craft</span>
             </div>
           </div>
         </div>
@@ -295,7 +300,141 @@
     </div>
   </section>
 
-  <!-- 5. Curated Style Portfolio & Gallery -->
+  <!-- 5. Resident Master Artist Spotlight & Avatar Showcase -->
+  <section id="artist" class="artist-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Resident Master Artisan</span>
+        <h2 class="section-title">Meet The Resident <span class="gold-gradient-text">Master Inker</span></h2>
+        <p class="section-desc">
+          Every sacred mark at Mysticink is personally drafted and tattooed by our resident master artist. 
+          No apprentices, no rushed commercial rotations—only quiet Himalayan devotion and single-needle precision.
+        </p>
+      </div>
+
+      <div class="artist-showcase-grid">
+        <!-- Interactive Avatar Stage -->
+        <div class="artist-avatar-stage">
+          <div class="artist-avatar-stage-inner">
+            <div class="avatar-glow-halo"></div>
+            <div class="featured-avatar-frame">
+              <img id="featured-artist-avatar" src="assets/artist/avatar_stylized_art.jpg" alt="Resident Master Tattoo Artist Avatar" class="featured-avatar-img">
+              <div class="avatar-badge-tag">
+                <span class="avatar-live-indicator"></span>
+                <span id="featured-avatar-badge-text">Sacred Mandala Aura Edition</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Avatar Perspective Selector -->
+          <div class="avatar-thumbnails-container">
+            <div class="avatar-thumbnails-header">
+              <span class="avatar-thumbnails-label">INTERACTIVE AVATAR PERSPECTIVES</span>
+              <span class="avatar-thumbnails-hint">Click to switch</span>
+            </div>
+            <div class="avatar-thumbs-row" id="avatar-thumbs-row">
+              <button class="avatar-thumb-btn active" data-src="assets/artist/avatar_stylized_art.jpg" data-title="Sacred Mandala Aura Avatar" data-desc="Stylized Digital Artisan Avatar featuring Tibetan sacred geometry & golden aura." data-badge="Sacred Mandala Aura Edition" aria-label="Sacred Art Avatar">
+                <img src="assets/artist/avatar_stylized_art.jpg" alt="Sacred Mandala Aura Avatar">
+                <span class="thumb-caption">Sacred Aura</span>
+              </button>
+              <button class="avatar-thumb-btn" data-src="assets/artist/avatar_2_graded.jpg" data-title="Sanctuary Master Portrait" data-desc="Halo rim-lighting capture in our Bhagsunag sanctuary workstation." data-badge="Master Portrait" aria-label="Master Portrait Avatar">
+                <img src="assets/artist/avatar_2_graded.jpg" alt="Master Portrait Avatar">
+                <span class="thumb-caption">Master Inker</span>
+              </button>
+              <button class="avatar-thumb-btn" data-src="assets/artist/avatar_4_graded.jpg" data-title="Rotary Linework Focus" data-desc="Intense concentration during single-needle script and fine-line tattooing." data-badge="Linework Focus" aria-label="Linework Focus Avatar">
+                <img src="assets/artist/avatar_4_graded.jpg" alt="Precision Profile Avatar">
+                <span class="thumb-caption">Linework Focus</span>
+              </button>
+              <button class="avatar-thumb-btn" data-src="assets/artist/avatar_1_graded.jpg" data-title="Atelier Inking Flow" data-desc="Top-down perspective capturing sterile workstation discipline and steady-hand stippling." data-badge="Atelier Flow" aria-label="Atelier Flow Avatar">
+                <img src="assets/artist/avatar_1_graded.jpg" alt="Atelier Inking Avatar">
+                <span class="thumb-caption">Atelier Flow</span>
+              </button>
+              <button class="avatar-thumb-btn" data-src="assets/artist/avatar_3_graded.jpg" data-title="High-Altitude Profile" data-desc="Side-profile craft view under high-intensity task lighting in McLeod Ganj." data-badge="Craft Profile" aria-label="Craft Profile Avatar">
+                <img src="assets/artist/avatar_3_graded.jpg" alt="Side Profile Avatar">
+                <span class="thumb-caption">Side Profile</span>
+              </button>
+              <button class="avatar-thumb-btn" data-src="assets/artist/avatar_5_graded.jpg" data-title="Fine-Line Script Session" data-desc="Micro-detail wrist piece craft displaying crisp line saturation and zero blowout." data-badge="Micro-Detail" aria-label="Micro-Detail Avatar">
+                <img src="assets/artist/avatar_5_graded.jpg" alt="Micro-Detail Avatar">
+                <span class="thumb-caption">Fine-Line Craft</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Artist Editorial Bio & Details Card -->
+        <div class="artist-bio-card">
+          <div class="artist-bio-header">
+            <div class="artist-identity">
+              <span class="artist-sub-title">RESIDENT ARTISAN & STUDIO FOUNDER</span>
+              <h3 class="artist-name">Pankaj <span class="artist-seal-badge">Verified Master Inker</span></h3>
+              <p class="artist-location-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Mysticink Sanctuary • Bhagsunag Road, McLeod Ganj
+              </p>
+            </div>
+          </div>
+
+          <!-- Active Avatar Info Box synced with clicks -->
+          <div class="avatar-active-info-box" id="avatar-active-info-box">
+            <div class="avatar-info-tag">ACTIVE AVATAR PERSPECTIVE</div>
+            <h4 id="featured-avatar-title">Sacred Mandala Aura Avatar</h4>
+            <p id="featured-avatar-desc">Stylized Digital Artisan Avatar featuring Tibetan sacred geometry & golden aura.</p>
+          </div>
+
+          <div class="artist-philosophy-quote">
+            <svg class="quote-icon" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            <p>"A tattoo created in the Himalayas is not just skin pigment; it is a permanent talisman of your journey. I treat every session as an unhurried, collaborative meditation."</p>
+          </div>
+
+          <!-- Key Metrics Grid -->
+          <div class="artist-metrics-grid">
+            <div class="artist-metric-pill">
+              <span class="metric-num">8+</span>
+              <span class="metric-lbl">Years Inking Craft</span>
+            </div>
+            <div class="artist-metric-pill">
+              <span class="metric-num">1,800+</span>
+              <span class="metric-lbl">Custom Artworks</span>
+            </div>
+            <div class="artist-metric-pill">
+              <span class="metric-num">5.0 ★</span>
+              <span class="metric-lbl">310+ Global Reviews</span>
+            </div>
+            <div class="artist-metric-pill">
+              <span class="metric-num">100%</span>
+              <span class="metric-lbl">Single-Artisan Care</span>
+            </div>
+          </div>
+
+          <!-- Specialty Tags -->
+          <div class="artist-specialties-wrap">
+            <span class="specialties-title">Signature Disciplines:</span>
+            <div class="specialties-tags">
+              <span class="spec-tag">Tibetan Sacred Mantras</span>
+              <span class="spec-tag">Sacred Geometry & Dotwork</span>
+              <span class="spec-tag">Single-Needle Fine-Line</span>
+              <span class="spec-tag">Buddha & Deity Realism</span>
+              <span class="spec-tag">High-Altitude Aftercare</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="artist-actions-row">
+            <a href="https://wa.me/917876132315?text=Hello%20Pankaj!%20I%20saw%20your%20avatar%20and%20portfolio%20on%20the%20Mysticink%20website%20and%20would%20love%20to%20consult%20for%20a%20tattoo." target="_blank" class="btn btn-gold">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+              <span>Consult with Pankaj</span>
+            </a>
+            <a href="#portfolio" class="btn btn-outline">
+              <span>View Inked Artworks</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Curated Style Portfolio & Gallery -->
   <section id="portfolio" class="gallery-section">
     <div class="container">
       <div class="section-header">
@@ -619,6 +758,19 @@
               <span>Direct discussion with the tattoo artist within minutes.</span>
             </div>
           </div>
+
+          <!-- Single-Artisan Guarantee Banner with Master Avatar -->
+          <div class="booking-artist-guarantee-card">
+            <div class="booking-artist-avatar-wrap">
+              <img src="assets/artist/avatar_2_graded.jpg" alt="Resident Master Artist Avatar" class="booking-artist-avatar">
+              <span class="booking-verified-icon" title="Resident Master">✓</span>
+            </div>
+            <div class="booking-artist-text">
+              <span class="booking-artist-badge">SINGLE-ARTISAN COMMITMENT</span>
+              <strong>Inked Exclusively by Pankaj</strong>
+              <p>Every line is personally drafted and tattooed by our resident master. No apprentices, no session hand-offs.</p>
+            </div>
+          </div>
         </div>
 
         <form id="traveler-booking-form" class="booking-form">
@@ -757,6 +909,7 @@
         <div class="footer-col">
           <h4>Artistic Focus</h4>
           <ul class="footer-links">
+            <li><a href="#artist">Resident Master Pankaj</a></li>
             <li><a href="#portfolio">Sacred Buddha Realism</a></li>
             <li><a href="#portfolio">Fine-Line Mantras & Lotus</a></li>
             <li><a href="#portfolio">Geometric Mandalas</a></li>

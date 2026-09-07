@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initReviewsEngine();
   initCurrencySwitcher();
   initGalleryFilterAndLightbox();
+  initArtistAvatarSwitcher();
   initWhatsAppConcierge();
   initNavigation();
 });
@@ -311,4 +312,44 @@ function initNavigation() {
   // Dynamic Year in footer
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+}
+
+/* ==========================================================================
+   6. Resident Master Artist Interactive Avatar Switcher
+   ========================================================================== */
+function initArtistAvatarSwitcher() {
+  const thumbBtns = document.querySelectorAll('.avatar-thumb-btn');
+  const featuredAvatarImg = document.getElementById('featured-artist-avatar');
+  const badgeText = document.getElementById('featured-avatar-badge-text');
+  const titleEl = document.getElementById('featured-avatar-title');
+  const descEl = document.getElementById('featured-avatar-desc');
+
+  if (!thumbBtns.length || !featuredAvatarImg) return;
+
+  thumbBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.classList.contains('active')) return;
+
+      // Update active thumbnail
+      thumbBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const src = btn.getAttribute('data-src');
+      const title = btn.getAttribute('data-title');
+      const desc = btn.getAttribute('data-desc');
+      const badge = btn.getAttribute('data-badge');
+
+      // Cinematic smooth transition
+      featuredAvatarImg.classList.add('fading');
+
+      setTimeout(() => {
+        if (src) featuredAvatarImg.src = src;
+        if (title && titleEl) titleEl.textContent = title;
+        if (desc && descEl) descEl.textContent = desc;
+        if (badge && badgeText) badgeText.textContent = badge;
+
+        featuredAvatarImg.classList.remove('fading');
+      }, 180);
+    });
+  });
 }
