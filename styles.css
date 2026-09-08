@@ -4,30 +4,30 @@
    ========================================================================== */
 
 :root {
-  /* Dark Noir Luxury Palette */
-  --bg-black: #08080A;
-  --bg-primary: #0D0D11;
-  --bg-surface: #131318;
-  --bg-surface-elevated: #1A1A22;
-  --bg-card: #15151B;
-  --bg-card-hover: #1C1C24;
-  --bg-glass: rgba(18, 18, 24, 0.75);
+  /* Warm Luxury Noir Sanctuary Palette (Warm Espresso & Aged Teakwood Sanctuary) */
+  --bg-black: #110E0C;
+  --bg-primary: #171310;
+  --bg-surface: #1E1813;
+  --bg-surface-elevated: #272019;
+  --bg-card: #201A15;
+  --bg-card-hover: #2B231C;
+  --bg-glass: rgba(23, 19, 16, 0.85);
 
   /* Brushed Champagne Gold Accents */
   --gold-primary: #C8A97E;
-  --gold-light: #E6D5B8;
+  --gold-light: #E8D9C2;
   --gold-dark: #9D8053;
-  --gold-glow: rgba(200, 169, 126, 0.16);
-  --gold-border: rgba(200, 169, 126, 0.28);
-  --gold-gradient: linear-gradient(135deg, #F0E2CD 0%, #C8A97E 50%, #A58455 100%);
-  --gold-gradient-subtle: linear-gradient(180deg, rgba(200, 169, 126, 0.08) 0%, rgba(200, 169, 126, 0) 100%);
+  --gold-glow: rgba(200, 169, 126, 0.22);
+  --gold-border: rgba(200, 169, 126, 0.32);
+  --gold-gradient: linear-gradient(135deg, #F5E9D8 0%, #C8A97E 50%, #A58455 100%);
+  --gold-gradient-subtle: linear-gradient(180deg, rgba(200, 169, 126, 0.12) 0%, rgba(200, 169, 126, 0) 100%);
 
-  /* Neutrals & Typography */
-  --text-primary: #F4F4F7;
-  --text-secondary: #A6A6B2;
-  --text-muted: #6E6E7A;
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-subtle-hover: rgba(255, 255, 255, 0.18);
+  /* Warm Neutrals & Typography */
+  --text-primary: #F8F5EF;
+  --text-secondary: #C8B9A6;
+  --text-muted: #8E7F70;
+  --border-subtle: rgba(200, 169, 126, 0.14);
+  --border-subtle-hover: rgba(200, 169, 126, 0.28);
 
   /* Functional Accents */
   --whatsapp: #25D366;
@@ -70,8 +70,9 @@ body {
   overflow-x: hidden;
   background-color: var(--bg-black);
   background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(200, 169, 126, 0.07), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(200, 169, 126, 0.03), transparent);
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(200, 169, 126, 0.10), transparent),
+    radial-gradient(ellipse 60% 40% at 85% 45%, rgba(185, 140, 90, 0.06), transparent),
+    radial-gradient(ellipse 70% 50% at 15% 75%, rgba(200, 169, 126, 0.05), transparent);
   background-attachment: fixed;
 }
 
@@ -542,7 +543,7 @@ a {
   left: 0;
   right: 0;
   padding: 30px;
-  background: linear-gradient(0deg, rgba(8, 8, 10, 0.95) 0%, rgba(8, 8, 10, 0.6) 60%, transparent 100%);
+  background: linear-gradient(0deg, rgba(17, 14, 12, 0.96) 0%, rgba(17, 14, 12, 0.6) 60%, transparent 100%);
 }
 
 .hero-media-tag {
@@ -2045,7 +2046,7 @@ a {
     width: 100%;
     height: 100vh;
     height: 100dvh;
-    background: rgba(8, 8, 11, 0.98);
+    background: rgba(17, 14, 12, 0.98);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
     z-index: 3000;
@@ -2399,11 +2400,11 @@ a {
     display: flex;
     padding: 10px 16px;
     padding-bottom: max(10px, env(safe-area-inset-bottom));
-    background: rgba(10, 10, 14, 0.96);
+    background: rgba(19, 15, 13, 0.96);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.7);
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(200, 169, 126, 0.16);
   }
 
   .mobile-action-btn {
