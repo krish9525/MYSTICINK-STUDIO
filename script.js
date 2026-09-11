@@ -10,7 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initArtistAvatarSwitcher();
   initWhatsAppConcierge();
   initNavigation();
-  initTattooFontSwitcher();
+
+  // Reset legacy font preference to permanent Ornate Atelier
+  try {
+    localStorage.removeItem('mysticink_tattoo_font');
+  } catch (e) {}
+  document.body.classList.remove('font-gothic-tattoo');
 });
 
 /* ==========================================================================
@@ -264,20 +269,36 @@ function initNavigation() {
 
   function openMobileMenu() {
     mobileDrawer?.classList.add('active');
+    mobileToggle?.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
   function closeMobileMenu() {
     mobileDrawer?.classList.remove('active');
+    mobileToggle?.classList.remove('active');
     document.body.style.overflow = '';
   }
 
+  function toggleMobileMenu() {
+    if (mobileDrawer?.classList.contains('active')) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  }
+
   if (mobileToggle) {
-    mobileToggle.addEventListener('click', openMobileMenu);
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMobileMenu();
+    });
   }
 
   if (mobileClose) {
-    mobileClose.addEventListener('click', closeMobileMenu);
+    mobileClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeMobileMenu();
+    });
   }
 
   // Close when clicking any nav link or CTA inside mobile drawer
@@ -319,84 +340,29 @@ function initNavigation() {
    6. Resident Master Artist Interactive Avatar Switcher
    ========================================================================== */
 function initArtistAvatarSwitcher() {
-  const thumbBtns = document.querySelectorAll('.avatar-thumb-btn');
+  const avatarButtons = document.querySelectorAll('.artist-avatar-thumb');
   const featuredAvatarImg = document.getElementById('featured-artist-avatar');
-  const badgeText = document.getElementById('featured-avatar-badge-text');
-  const titleEl = document.getElementById('featured-avatar-title');
-  const descEl = document.getElementById('featured-avatar-desc');
+  const featuredStyleBadge = document.getElementById('featured-artist-style');
 
-  if (!thumbBtns.length || !featuredAvatarImg) return;
+  if (!avatarButtons.length || !featuredAvatarImg) return;
 
-  thumbBtns.forEach(btn => {
+  avatarButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      if (btn.classList.contains('active')) return;
-
-      // Update active thumbnail
-      thumbBtns.forEach(b => b.classList.remove('active'));
+      avatarButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      const src = btn.getAttribute('data-src');
-      const title = btn.getAttribute('data-title');
-      const desc = btn.getAttribute('data-desc');
+      const fullSrc = btn.getAttribute('data-full');
       const badge = btn.getAttribute('data-badge');
 
-      // Cinematic smooth transition
       featuredAvatarImg.classList.add('fading');
 
       setTimeout(() => {
-        if (src) featuredAvatarImg.src = src;
-        if (title && titleEl) titleEl.textContent = title;
-        if (desc && descEl) descEl.textContent = desc;
+        if (fullSrc) featuredAvatarImg.src = fullSrc;
+        const badgeText = featuredStyleBadge ? featuredStyleBadge.querySelector('.badge-label') : null;
         if (badge && badgeText) badgeText.textContent = badge;
 
         featuredAvatarImg.classList.remove('fading');
       }, 180);
-    });
-  });
-}
-
-/* ==========================================================================
-   7. Tattoo Studio Typography Switcher (Ornate Sacred vs. Gothic Tattoo)
-   ========================================================================== */
-function initTattooFontSwitcher() {
-  const switchBtns = document.querySelectorAll('.font-switch-btn');
-  if (!switchBtns.length) return;
-
-  function setTattooFont(mode) {
-    if (mode === 'gothic') {
-      document.body.classList.add('font-gothic-tattoo');
-      document.body.classList.remove('font-ornate-tattoo');
-    } else {
-      document.body.classList.remove('font-gothic-tattoo');
-      document.body.classList.add('font-ornate-tattoo');
-    }
-
-    // Sync all switcher buttons across desktop & mobile
-    switchBtns.forEach(btn => {
-      if (btn.getAttribute('data-font') === mode) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
-    });
-
-    try {
-      localStorage.setItem('mysticink_tattoo_font', mode);
-    } catch (e) {}
-  }
-
-  // Load saved preference or default to ornate
-  let savedFont = 'ornate';
-  try {
-    savedFont = localStorage.getItem('mysticink_tattoo_font') || 'ornate';
-  } catch (e) {}
-  setTattooFont(savedFont);
-
-  switchBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const mode = btn.getAttribute('data-font');
-      setTattooFont(mode);
     });
   });
 }

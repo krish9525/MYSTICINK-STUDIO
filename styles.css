@@ -37,9 +37,8 @@
   --whatsapp-hover: #20BA59;
   --star-gold: #F59E0B;
 
-  /* Authentic Tattoo Atelier Typography */
+  /* Authentic Tattoo Atelier Typography (Permanent Ornate Atelier) */
   --font-tattoo-ornate: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
-  --font-tattoo-gothic: 'Pirata One', 'Grenze Gotisch', cursive;
   --font-tattoo-script: 'Pinyon Script', cursive;
   --font-serif: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -261,7 +260,7 @@ a {
 .main-header {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 3005;
   background: var(--bg-glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -282,7 +281,7 @@ a {
 }
 
 .brand-title {
-  font-family: var(--font-tattoo-gothic);
+  font-family: var(--font-tattoo-ornate);
   font-size: 1.85rem;
   font-weight: 700;
   letter-spacing: 0.07em;
@@ -357,44 +356,6 @@ a {
   gap: 12px;
   flex-shrink: 0;
 }
-
-/* Tattoo Studio Font Switcher */
-.tattoo-font-picker {
-  display: inline-flex;
-  align-items: center;
-  background: var(--bg-surface);
-  border: 1px solid var(--gold-border);
-  border-radius: var(--radius-full);
-  padding: 3px 5px;
-  gap: 3px;
-  box-shadow: 0 2px 8px rgba(197, 147, 37, 0.1);
-}
-
-.font-switch-btn {
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 4px 11px;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  transition: var(--transition-smooth);
-  white-space: nowrap;
-}
-
-.font-switch-btn:hover {
-  color: var(--gold-primary);
-}
-
-.font-switch-btn.active {
-  background: var(--gold-gradient);
-  color: #1A1303;
-  font-weight: 700;
-  box-shadow: 0 2px 8px rgba(197, 147, 37, 0.3);
-}
-
 .header-cta-group {
   display: flex;
   align-items: center;
@@ -2202,12 +2163,22 @@ a {
     display: flex !important;
     align-items: center;
     justify-content: center;
-    padding: 8px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-primary);
-    border-radius: var(--radius-sm);
+    padding: 8px 10px;
+    background: #FFFFFF;
+    border: 1.5px solid var(--gold-border);
+    color: #1A140E;
+    border-radius: var(--radius-md);
     cursor: pointer;
+    box-shadow: 0 2px 8px rgba(197, 147, 37, 0.18);
+    transition: var(--transition-smooth);
+  }
+
+  .mobile-menu-btn:hover,
+  .mobile-menu-btn.active {
+    background: var(--gold-gradient);
+    color: #1A1303;
+    border-color: var(--gold-primary);
+    box-shadow: 0 4px 14px rgba(197, 147, 37, 0.38);
   }
 
   .mobile-drawer-overlay {
@@ -2217,16 +2188,18 @@ a {
     width: 100%;
     height: 100vh;
     height: 100dvh;
-    background: rgba(17, 14, 12, 0.98);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
+    background: rgba(26, 20, 14, 0.68);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     z-index: 3000;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     justify-content: center;
-    align-items: center;
-    padding: 24px;
+    align-items: flex-start;
+    padding: calc(64px + 14px) 16px 24px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .mobile-drawer-overlay.active {
@@ -2236,69 +2209,129 @@ a {
 
   .mobile-drawer-content {
     width: 100%;
-    max-width: 320px;
+    max-width: 380px;
+    background: #FAF6ED;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.18), transparent 70%),
+      radial-gradient(circle at 50% 100%, rgba(197, 147, 37, 0.12), transparent 60%);
+    border: 2px solid var(--gold-primary);
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 35px rgba(197, 147, 37, 0.28);
+    padding: 24px 18px 20px;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    position: relative;
+    transform: translateY(-12px) scale(0.97);
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mobile-drawer-overlay.active .mobile-drawer-content {
+    transform: translateY(0) scale(1);
   }
 
   .mobile-drawer-close {
     position: absolute;
-    top: -28px;
-    right: -8px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-primary);
-    width: 44px;
-    height: 44px;
+    top: 12px;
+    right: 12px;
+    background: #FFFFFF;
+    border: 1.5px solid var(--gold-border);
+    color: #1A140E;
+    width: 36px;
+    height: 36px;
     border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 1;
     cursor: pointer;
     transition: var(--transition-smooth);
+    z-index: 10;
   }
 
   .mobile-drawer-close:hover {
-    background: rgba(197, 147, 37, 0.2);
-    color: var(--gold-primary);
+    background: var(--gold-gradient);
+    color: #1A1303;
+    border-color: var(--gold-primary);
   }
 
   .mobile-drawer-brand {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     padding-bottom: 14px;
-    border-bottom: 1px solid var(--border-subtle);
+    border-bottom: 1.5px solid var(--gold-border);
     width: 100%;
+  }
+
+  .mobile-drawer-brand .brand-title {
+    font-family: var(--font-tattoo-ornate) !important;
+    font-size: 1.65rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    color: #1A140E !important;
+    opacity: 1 !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.2;
+  }
+
+  .mobile-drawer-brand .tattoo-needle-glyph {
+    color: var(--gold-primary) !important;
+    font-size: 1.3rem !important;
+    filter: drop-shadow(0 2px 4px rgba(197, 147, 37, 0.5));
+  }
+
+  .mobile-drawer-brand .brand-sub {
+    font-family: var(--font-mono) !important;
+    font-size: 0.64rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.16em !important;
+    text-transform: uppercase !important;
+    color: var(--gold-primary) !important;
+    opacity: 1 !important;
+    margin-top: 5px;
   }
 
   .mobile-drawer-links {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     width: 100%;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .mobile-link {
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
-    letter-spacing: 0.05em;
-    color: var(--text-primary);
-    display: block;
-    padding: 6px 0;
+    font-family: var(--font-tattoo-ornate) !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em !important;
+    color: #1A140E !important;
+    opacity: 1 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #FFFFFF;
+    border: 1.5px solid var(--gold-border);
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(197, 147, 37, 0.08);
     transition: var(--transition-smooth);
   }
 
-  .mobile-link:hover {
-    color: var(--gold-light);
+  .mobile-link:hover,
+  .mobile-link:active {
+    background: var(--gold-gradient) !important;
+    color: #1A1303 !important;
+    border-color: var(--gold-primary) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(197, 147, 37, 0.35);
   }
 
   .mobile-drawer-actions {
@@ -2608,37 +2641,8 @@ a {
 }
 
 /* ==========================================================================
-   13. Tattoo Studio Typography Modes & Flash Atelier Styling
+   13. Tattoo Studio Card Flash Corner Brackets
    ========================================================================== */
-
-/* Gothic Ink Tattoo Mode */
-body.font-gothic-tattoo .brand-title {
-  font-family: 'Pirata One', cursive !important;
-  font-size: 2.15rem !important;
-  letter-spacing: 0.05em;
-}
-
-body.font-gothic-tattoo .hero-title {
-  font-family: 'Pirata One', 'Grenze Gotisch', cursive !important;
-  font-size: clamp(2.8rem, 6vw, 4.4rem) !important;
-  letter-spacing: 0.04em !important;
-  line-height: 1.12 !important;
-}
-
-body.font-gothic-tattoo .section-title {
-  font-family: 'Pirata One', 'Grenze Gotisch', cursive !important;
-  font-size: clamp(2.2rem, 5vw, 3.2rem) !important;
-  letter-spacing: 0.04em !important;
-}
-
-body.font-gothic-tattoo .artist-name,
-body.font-gothic-tattoo .pricing-tier-name,
-body.font-gothic-tattoo .traveler-card-title,
-body.font-gothic-tattoo .booking-info h2,
-body.font-gothic-tattoo .serif-title {
-  font-family: 'Pirata One', 'Grenze Gotisch', cursive !important;
-  letter-spacing: 0.04em !important;
-}
 
 /* Tattoo Studio Card Flash Corner Brackets */
 .traveler-card,
