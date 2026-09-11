@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initArtistAvatarSwitcher();
   initWhatsAppConcierge();
   initNavigation();
+  initTattooFontSwitcher();
 });
 
 /* ==========================================================================
@@ -350,6 +351,52 @@ function initArtistAvatarSwitcher() {
 
         featuredAvatarImg.classList.remove('fading');
       }, 180);
+    });
+  });
+}
+
+/* ==========================================================================
+   7. Tattoo Studio Typography Switcher (Ornate Sacred vs. Gothic Tattoo)
+   ========================================================================== */
+function initTattooFontSwitcher() {
+  const switchBtns = document.querySelectorAll('.font-switch-btn');
+  if (!switchBtns.length) return;
+
+  function setTattooFont(mode) {
+    if (mode === 'gothic') {
+      document.body.classList.add('font-gothic-tattoo');
+      document.body.classList.remove('font-ornate-tattoo');
+    } else {
+      document.body.classList.remove('font-gothic-tattoo');
+      document.body.classList.add('font-ornate-tattoo');
+    }
+
+    // Sync all switcher buttons across desktop & mobile
+    switchBtns.forEach(btn => {
+      if (btn.getAttribute('data-font') === mode) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    try {
+      localStorage.setItem('mysticink_tattoo_font', mode);
+    } catch (e) {}
+  }
+
+  // Load saved preference or default to ornate
+  let savedFont = 'ornate';
+  try {
+    savedFont = localStorage.getItem('mysticink_tattoo_font') || 'ornate';
+  } catch (e) {}
+  setTattooFont(savedFont);
+
+  switchBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const mode = btn.getAttribute('data-font');
+      setTattooFont(mode);
     });
   });
 }

@@ -26,10 +26,10 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✒️</text></svg>">
 
-  <!-- Luxury Google Typography: Cinzel, Cormorant Garamond, Plus Jakarta Sans & JetBrains Mono -->
+  <!-- Authentic Tattoo Atelier Typography: Cinzel Decorative, Pirata One (Gothic Tattoo), Grenze Gotisch, Pinyon Script, Cormorant Garamond & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;700;800&family=Pirata+One&family=Grenze+Gotisch:wght@600;700;800;900&family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css">
@@ -112,8 +112,8 @@
   <header class="main-header">
     <div class="container nav-flex">
       <a href="#hero" class="brand-wrap">
-        <span class="brand-title">MYSTICINK</span>
-        <span class="brand-sub">Sanctuary • Dharamshala</span>
+        <span class="brand-title"><span class="tattoo-needle-glyph">✒</span> MYSTICINK</span>
+        <span class="brand-sub">Tattoo &amp; Piercing Atelier • Dharamshala</span>
       </a>
 
       <!-- Desktop Navigation Links (Hidden on mobile) -->
@@ -130,6 +130,12 @@
       </nav>
 
       <div class="header-tools">
+        <!-- Tattoo Studio Font Switcher -->
+        <div class="tattoo-font-picker" title="Switch Tattoo Studio Typography">
+          <button type="button" class="font-switch-btn active" data-font="ornate">Ornate Atelier</button>
+          <button type="button" class="font-switch-btn" data-font="gothic">Gothic Ink</button>
+        </div>
+
         <div class="header-cta-group">
           <a href="#booking" class="btn btn-gold header-cta-btn">
             <span>Book Session</span>
@@ -150,8 +156,13 @@
       <button id="mobile-close-btn" class="mobile-drawer-close" aria-label="Close menu">&times;</button>
       
       <div class="mobile-drawer-brand">
-        <span class="brand-title" style="font-size: 1.35rem;">MYSTICINK</span>
-        <span class="brand-sub">Himalayan Tattoo Sanctuary</span>
+        <span class="brand-title" style="font-size: 1.55rem;"><span class="tattoo-needle-glyph">✒</span> MYSTICINK</span>
+        <span class="brand-sub">Tattoo &amp; Piercing Atelier • Dharamshala</span>
+      </div>
+
+      <div class="tattoo-font-picker mobile-font-picker" style="margin-bottom: 20px;">
+        <button type="button" class="font-switch-btn active" data-font="ornate">Ornate Atelier</button>
+        <button type="button" class="font-switch-btn" data-font="gothic">Gothic Ink</button>
       </div>
 
       <ul class="mobile-drawer-links">
